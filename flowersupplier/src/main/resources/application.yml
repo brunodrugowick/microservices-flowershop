@@ -9,3 +9,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
+  application:
+    name: supplier
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
