@@ -23,7 +23,7 @@ Someone who delivers stuff to clients from the suppliers.
 
 `eureka-server` folder.
 Handles service registry and discovery.
-Balancing is on the client-side, via a RestTemplate bean configured to user Eureka client.
+Balancing is on the client-side, via a RestTemplate bean configured to use Eureka server as a client.
 
 ### Config Server 
 
