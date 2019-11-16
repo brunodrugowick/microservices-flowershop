@@ -5,4 +5,4 @@ spring:
     url: jdbc:mysql://localhost:5506/supplier
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
