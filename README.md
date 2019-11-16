@@ -4,10 +4,31 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 ## Components
 
-- Store Front (the Store itself, like a website where a user buys flowers and stuff). `storefront` folder.
-- Supplier (someone who provides products on different locations). `supplier` folder.
-- Carrier (someone who delivers stuff to clients from the suppliers). `carrier` folder.
-- Eureka server (handles service registry, discovery and routing (?)). `eureka-server` folder.
+### Store Front 
+
+`storefront` folder. 
+The Store itself, like a website where a user buys flowers and stuff.
+
+### Supplier 
+
+`supplier` folder.
+Someone who provides products on different locations.
+
+### Carrier 
+
+`carrier` folder.
+Someone who delivers stuff to clients from the suppliers.
+
+### Eureka server 
+
+`eureka-server` folder.
+Handles service registry and discovery.
+Balancing is on the client-side, via a RestTemplate bean configured to user Eureka client.
+
+### Config Server 
+
+`config-server` folder.
+Provides configuration for the microservices.  The `config-repo` folder is used to store the configuration files.
 
 ## Running
 
