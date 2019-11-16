@@ -8,6 +8,7 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 `storefront` folder. 
 The Store itself, like a website where a user buys flowers and stuff.
+Balances the requests to supplier and carrier locally (client-side load-balancing) by fetching and caching Eureka server information.
 
 ### Supplier 
 
