@@ -1,6 +1,7 @@
 package dev.drugowick.microservice.flowerstore.controller;
 
 import dev.drugowick.microservice.flowerstore.dto.CartDTO;
+import dev.drugowick.microservice.flowerstore.model.Order;
 import dev.drugowick.microservice.flowerstore.service.CartService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,7 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void closeCart(@RequestBody CartDTO cart) {
-
-        cartService.finishCart(cart);
-
+    public Order closeCart(@RequestBody CartDTO cart) {
+        return cartService.finishCart(cart);
     }
 }

@@ -5,11 +5,11 @@ import dev.drugowick.microservice.flowersupplier.repository.InfoRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InfoService {
+public class SupplierInfoService {
 
     private InfoRepository infoRepository;
 
-    public InfoService(InfoRepository infoRepository) {
+    public SupplierInfoService(InfoRepository infoRepository) {
         this.infoRepository = infoRepository;
     }
 

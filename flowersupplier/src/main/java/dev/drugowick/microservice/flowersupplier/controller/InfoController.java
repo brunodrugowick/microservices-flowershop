@@ -1,7 +1,7 @@
 package dev.drugowick.microservice.flowersupplier.controller;
 
 import dev.drugowick.microservice.flowersupplier.model.SupplierInfo;
-import dev.drugowick.microservice.flowersupplier.service.InfoService;
+import dev.drugowick.microservice.flowersupplier.service.SupplierInfoService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/info")
 public class InfoController {
 
-    private InfoService infoService;
+    private SupplierInfoService infoService;
 
-    public InfoController(InfoService infoService) {
+    public InfoController(SupplierInfoService infoService) {
         this.infoService = infoService;
     }
 

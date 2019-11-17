@@ -29,4 +29,9 @@ public class AddressDTO {
     public void setProvince(String province) {
         this.province = province;
     }
+
+	@Override
+	public String toString() {
+		return "AddressDTO [street=" + street + ", number=" + number + ", province=" + province + "]";
+	}
 }

@@ -2,7 +2,7 @@ spring:
   application:
     name: supplier
   profiles:
-    active: default
+    active: dev
   cloud:
     config:
       uri: http://localhost:8888

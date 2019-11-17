@@ -2,10 +2,22 @@
 server:
   port: 8888
   
+# Config for git.  
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/brunodrugowick/microservices-flowershop
+#          search-paths: config-repo
+          
+# Config for local development
 spring:
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/brunodrugowick/microservices-flowershop
-          search-paths: config-repo
+        native:
+          search-locations: /home/drugo/Projects/microservices-flowershop/config-repo
+    
