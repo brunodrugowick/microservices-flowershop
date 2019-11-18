@@ -2,6 +2,8 @@ package dev.drugowick.microservice.flowersupplier.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,8 @@ import dev.drugowick.microservice.flowersupplier.service.OrderService;
 @RestController
 @RequestMapping("order")
 public class OrderController {
+	
+	private final static Logger LOG = LoggerFactory.getLogger(OrderController.class);
 
 	private OrderService orderService;
 
@@ -24,6 +28,7 @@ public class OrderController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public Order makeOrder(@RequestBody List<OrderItemDTO> products) {
+		LOG.info("Making order based on the following products {}", products);
 		return orderService.makeOrder(products);
 	}
 	
