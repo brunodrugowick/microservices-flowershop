@@ -31,6 +31,10 @@ Balancing is on the client-side, via a RestTemplate bean configured to use Eurek
 `config-server` folder.
 Provides configuration for the microservices.  The `config-repo` folder is used to store the configuration files.
 
+### Other Stuff
+
+I've configured to log to papertrail (a log aggregator as a service) and used Spring Cloud Sleuth to add a traceId to every user request, being able to trace  the request across microservices.
+
 ## Running
 
 Run each of them separately using `./mvnw spring-boot:run` on each folder.
