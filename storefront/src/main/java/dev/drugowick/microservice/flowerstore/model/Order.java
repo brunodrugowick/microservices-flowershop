@@ -1,7 +1,12 @@
 package dev.drugowick.microservice.flowerstore.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "order_table")
 public class Order {
 
+	@Id
 	private Long supplierOrderId;
 	
 	private Integer fulfillmentTime;

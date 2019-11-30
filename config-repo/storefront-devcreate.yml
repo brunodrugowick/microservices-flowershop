@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    password: mariadb
+    username: root
+    url: jdbc:mysql://localhost:5506/storefront
+  jpa:
+    hibernate:
+      ddl-auto: create

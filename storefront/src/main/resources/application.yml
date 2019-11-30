@@ -1,6 +1,5 @@
-spring:
-  application:
-    name: storefront
+server:
+  port: 8080
 
 eureka:
   client:

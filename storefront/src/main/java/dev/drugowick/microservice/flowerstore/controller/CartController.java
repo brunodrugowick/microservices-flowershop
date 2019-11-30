@@ -6,6 +6,7 @@ import dev.drugowick.microservice.flowerstore.service.CartService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,11 @@ public class CartController {
 
     public CartController(CartService cartService) {
         this.cartService = cartService;
+    }
+    
+    @RequestMapping("/{id}")
+    public Order getOrder(@PathVariable Long id) {
+    	return cartService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
