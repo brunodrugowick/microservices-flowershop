@@ -2,7 +2,7 @@ spring:
   application:
     name: supplier
   profiles:
-    active: dev
+    active: devcreate
   cloud:
     config:
       uri: http://localhost:8888

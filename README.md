@@ -2,6 +2,13 @@
 
 This project is based on an Alura course on Microservices with Spring Cloud.
 
+## Requirements to develop
+
+- You must configure the config-server `application.yml` file with at least the `search-locations` property. You may change to the location of your own config repo on your local machine or use the commented configuration to use a github repository.
+- A MariaDB instance running with the following schemas already created:
+  - supplier
+  - Note: you can configure the database, connection info and schema name on the configuration files on the config-server.
+
 ## Components
 
 ### Store Front 
