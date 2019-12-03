@@ -1,5 +1,7 @@
 package dev.drugowick.microservice.flowerstore.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,6 +14,10 @@ public class Order {
 	private Integer fulfillmentTime;
 	
 	private String destinationAddress;
+	
+	private LocalDate deliveryDate;
+	
+	private Long voucher;
 	
 	public Long getSupplierOrderId() {
 		return supplierOrderId;
@@ -37,5 +43,20 @@ public class Order {
 		this.fulfillmentTime = fulfillmentTime;
 	}
 	
+	public LocalDate getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public Long getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Long voucher) {
+		this.voucher = voucher;
+	}
 	
 }
