@@ -25,25 +25,30 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 - Balances the requests to suppliers and carriers locally (client-side load-balancing) by fetching and caching Eureka server information (ribbon).
 - Uses Hystrix to control timeout on methods that use other microservices.
 - Uses Bulkhead (from Hystrix) to separate a group of threads for each operation managed by Hystrix.
+- Controls the integration with other microservices.
 
 ### Supplier 
 
 `supplier` folder.
 
 - Someone who provides products on different locations.
+- Provides Orders to the `storefront` component.
 
 ### Carrier 
 
 `carrier` folder.
 
 - Someone who delivers stuff to clients from the suppliers.
+- Provides Vouchers to the `storefront` component.
 
 ### Eureka server 
 
 `eureka-server` folder.
 
 - Handles service registry and discovery.
-- Balancing is on the client-side, via a RestTemplate bean configured to use Eureka server as a client.
+- Every component registers itself here.
+- Balancing is on the client, ~~via a RestTemplate bean configured to use Eureka server as a client~~ (this was replaced by the FeignClient. See older commits to understand how to configure a RestTemplate to work with Eureka Client).
+- Balancing is on the client through FeignClient, which is auto-configured to balance requests when eureka client is being used.
 
 ### Config Server 
 
