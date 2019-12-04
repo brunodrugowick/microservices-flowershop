@@ -44,6 +44,14 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 - Someone who delivers stuff to clients from the suppliers.
 - Provides Vouchers to the `storefront` component.
 
+### Authentication Server
+
+`auth-service` folder.
+
+- This is an OAuth server tying together Spring Security and Spring Cloud OAuth2.
+- Spring Security configures a user (hardcoded =).
+- Spring Cloud OAuth2 configures a client of the authorization server, the `storefront` (hardcoded =).
+
 ### API Gateway
 
 `zuul-api-gateway` folder.
