@@ -1,4 +1,4 @@
-package br.com.alura.microservice.carrier;
+package dev.drugowick.microservice.carrier;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

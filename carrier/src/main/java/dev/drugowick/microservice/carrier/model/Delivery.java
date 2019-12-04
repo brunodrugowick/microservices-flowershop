@@ -1,4 +1,4 @@
-package br.com.alura.microservice.carrier.model;
+package dev.drugowick.microservice.carrier.model;
 
 import java.time.LocalDate;
 

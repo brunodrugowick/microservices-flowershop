@@ -1,4 +1,4 @@
-package br.com.alura.microservice.carrier.dto;
+package dev.drugowick.microservice.carrier.dto;
 
 import java.time.LocalDate;
 
