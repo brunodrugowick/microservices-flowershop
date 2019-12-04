@@ -13,7 +13,7 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 ## Test Stuff
 
 - There's a [cartRequests.jmx](README/cartRequests.jmx) to be imported on JMeter and test Hystrix.
-- There's a [insomnia_requests.json](README/insomnia_requests.json) to be imported on Insomnia and test all endpoints.
+- There's a [insomnia_requests.json](README/insomnia_requests.json) file to be imported on [Insomnia](https://insomnia.rest/download/) and test all endpoints.
 
 ## Components
 
@@ -43,6 +43,15 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 - Someone who delivers stuff to clients from the suppliers.
 - Provides Vouchers to the `storefront` component.
+
+### API Gateway
+
+`zuul-api-gateway` folder.
+
+- Clients make requests for the API Gateway, which then redirects to the correct microservice for the request.
+- Implemented with Netflix Zuul.
+- Integrates (automatically) with Eureka to get microservices instances.
+- Does client-side load balancing with Ribbon automatically.
 
 ### Eureka server 
 
