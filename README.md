@@ -2,6 +2,8 @@
 
 This project is based on an Alura course on Microservices with Spring Cloud.
 
+The commits tell the story of the application development. You may want to start there if you're using this project to study microservices.
+
 ## Requirements to develop
 
 - You must configure the config-server `application.yml` file with at least the `search-locations` property. You may change to the location of your own config repo on your local machine or use the commented configuration to use a github repository.
