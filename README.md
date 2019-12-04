@@ -29,6 +29,8 @@ This project is based on an Alura course on Microservices with Spring Cloud.
   - RECEIVED: order created on the `storefront` microservice.
   - SUPPLIER_ORDER_CREATED: order incremented with information from the `supplier` microservice.
   - CARRIER_VOUCHER_CREATED: order incremented with information from the `carrier` microservice.
+- Integrates with the authentication server.
+- Forwards authentication headers to other microservices with a RequestInterceptor bean.
 
 ### Supplier 
 
@@ -36,6 +38,7 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 - Someone who provides products on different locations.
 - Provides Orders to the `storefront` component.
+- Integrates with the authentication server.
 
 ### Carrier 
 
@@ -43,6 +46,7 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 - Someone who delivers stuff to clients from the suppliers.
 - Provides Vouchers to the `storefront` component.
+- Integrates with the authentication server.
 
 ### Authentication Server
 
@@ -68,17 +72,18 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 - Handles service registry and discovery.
 - Every component registers itself here.
 - Balancing is on the client, ~~via a RestTemplate bean configured to use Eureka server as a client~~ (this was replaced by the FeignClient. See older commits to understand how to configure a RestTemplate to work with Eureka Client).
-- Balancing is on the client through FeignClient, which is auto-configured to balance requests when eureka client is being used.
+- Balancing is on the client through FeignClient, which is auto-configured on each application to balance requests when eureka client is being used.
 
 ### Config Server 
 
 `config-server` folder.
 
-- Provides configuration for the microservices.  The `config-repo` folder is used to store the configuration files.
+- Provides configuration to the microservices.  The `config-repo` folder is used to store the configuration files.
 
 ### Other Stuff
 
 - I've configured to log to papertrail (a log aggregator as a service) and used Spring Cloud Sleuth to add a traceId to every user request, being able to trace  the request across microservices.
+- The logback.xml on each "domain" microservice does the magic. This will stop working after a while...
 
 ## Running
 
@@ -86,8 +91,12 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 
 ## Domain
 
+TODO: improve/translate.
+
 ![Domain](README/domain.png)
 
 ## Endpoints and Services
+
+TODO: list them.
 
 ![Endpoints and Services V1](README/endpoints.png)

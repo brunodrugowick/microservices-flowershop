@@ -43,5 +43,11 @@ public class DeliveryDto {
 	public void setFromAddress(String fromAddress) {
 		this.fromAddress = fromAddress;
 	}
+
+	@Override
+	public String toString() {
+		return "DeliveryDto [orderId=" + orderId + ", deliveryEstimatedDate=" + deliveryEstimatedDate + ", fromAddress="
+				+ fromAddress + ", toAddress=" + toAddress + "]";
+	}
 	
 }
