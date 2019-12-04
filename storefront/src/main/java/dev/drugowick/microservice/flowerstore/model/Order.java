@@ -3,12 +3,19 @@ package dev.drugowick.microservice.flowerstore.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "order_table")
 public class Order {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private Long supplierOrderId;
 	
 	private Integer fulfillmentTime;
@@ -18,6 +25,17 @@ public class Order {
 	private LocalDate deliveryDate;
 	
 	private Long voucher;
+	
+	@Enumerated(EnumType.STRING)
+	private OrderState state;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public Long getSupplierOrderId() {
 		return supplierOrderId;
@@ -58,5 +76,22 @@ public class Order {
 	public void setVoucher(Long voucher) {
 		this.voucher = voucher;
 	}
+
+	public OrderState getState() {
+		return state;
+	}
+
+	public void setState(OrderState state) {
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", supplierOrderId=" + supplierOrderId + ", fulfillmentTime=" + fulfillmentTime
+				+ ", destinationAddress=" + destinationAddress + ", deliveryDate=" + deliveryDate + ", voucher="
+				+ voucher + ", state=" + state + "]";
+	}
+	
+	
 	
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Objects;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import dev.drugowick.microservice.flowerstore.client.CarrierClient;
@@ -18,6 +19,7 @@ import dev.drugowick.microservice.flowerstore.dto.OrderInfoDTO;
 import dev.drugowick.microservice.flowerstore.dto.SupplierInfoDTO;
 import dev.drugowick.microservice.flowerstore.dto.VoucherDto;
 import dev.drugowick.microservice.flowerstore.model.Order;
+import dev.drugowick.microservice.flowerstore.model.OrderState;
 import dev.drugowick.microservice.flowerstore.repository.OrderRepository;
 
 @Service
@@ -47,11 +49,22 @@ public class CartService {
 			threadPoolKey = "finishCart")
 	public Order finishCart(CartDTO cartDTO) {
 		
-		SupplierInfoDTO supplierInfoDTO = supplierClient.getInfoByProvince(cartDTO.getAddress().getProvince());
-		LOG.info("Got supplier info from {}", cartDTO);
+		Order savedOrder = new Order();
+		savedOrder.setDestinationAddress(cartDTO.getAddress().toString());
+		savedOrder.setState(OrderState.RECEIVED);
+		orderRepository.save(savedOrder);
+		cartDTO.setOrderId(savedOrder.getId());
+		LOG.info("Order saved on storefront {}", savedOrder);
 		
+		SupplierInfoDTO supplierInfoDTO = supplierClient.getInfoByProvince(cartDTO.getAddress().getProvince());
+		LOG.info("Got supplier info {}", supplierInfoDTO);
 		OrderInfoDTO supplierOrder = supplierClient.makeOrder(cartDTO.getItems());
 		LOG.info("Got order from supplier {}", supplierOrder);
+		savedOrder.setSupplierOrderId(supplierOrder.getId());
+		savedOrder.setFulfillmentTime(supplierOrder.getFulfillmentTime());
+		savedOrder.setState(OrderState.SUPPLIER_ORDER_CREATED);
+		orderRepository.save(savedOrder);
+		LOG.info("Order incremented on storefront with info from supplier {}", savedOrder);
 		
 		DeliveryInfoDto deliveryInfoDto = new DeliveryInfoDto();
 		deliveryInfoDto.setOrderId(supplierOrder.getId());
@@ -59,19 +72,21 @@ public class CartService {
 		deliveryInfoDto.setFromAddress(supplierInfoDTO.getAddress());
 		deliveryInfoDto.setToAddress(cartDTO.getAddress().toString());
 		VoucherDto voucher = carrierClient.scheduleDelivery(deliveryInfoDto);
-		
-		Order savedOrder = new Order();
-		savedOrder.setSupplierOrderId(supplierOrder.getId());
-		savedOrder.setFulfillmentTime(supplierOrder.getFulfillmentTime());
-		savedOrder.setDestinationAddress(cartDTO.getAddress().toString());
 		savedOrder.setDeliveryDate(voucher.getDeliveryEstimatedDate());
 		savedOrder.setVoucher(voucher.getNumber());
+		savedOrder.setState(OrderState.CARRIER_VOUCHER_CREATED);
+		orderRepository.save(savedOrder);
+		LOG.info("Order incremented on storefront with info from carrier {}", savedOrder);
 		
-		return orderRepository.save(savedOrder);
+		return savedOrder;
     }
 	
 	public Order finishCartFallback(CartDTO cartDTO) {
-		LOG.info("Falling back to finishCartFallback method.");
+		LOG.info("Hystrix timeout. Falling back to finishCartFallback method.");
+		if (cartDTO.getOrderId() != null) {
+			return orderRepository.findById(cartDTO.getOrderId()).orElse(new Order());
+		}
+		
 		return new Order();
 	}
 }

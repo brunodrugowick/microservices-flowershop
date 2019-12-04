@@ -20,4 +20,11 @@ public class CartItemDTO {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+	@Override
+	public String toString() {
+		return "CartItemDTO [id=" + id + ", amount=" + amount + "]";
+	}
+    
+    
 }

@@ -24,4 +24,9 @@ public class VoucherDto {
 		this.deliveryEstimatedDate = deliveryEstimatedDate;
 	}
 
+	@Override
+	public String toString() {
+		return "VoucherDto [number=" + number + ", deliveryEstimatedDate=" + deliveryEstimatedDate + "]";
+	}
+
 }

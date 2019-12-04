@@ -26,6 +26,9 @@ This project is based on an Alura course on Microservices with Spring Cloud.
 - Uses Hystrix to control timeout on methods that use other microservices.
 - Uses Bulkhead (from Hystrix) to separate a group of threads for each operation managed by Hystrix.
 - Controls the integration with other microservices.
+  - RECEIVED: order created on the `storefront` microservice.
+  - SUPPLIER_ORDER_CREATED: order incremented with information from the `supplier` microservice.
+  - CARRIER_VOUCHER_CREATED: order incremented with information from the `carrier` microservice.
 
 ### Supplier 
 

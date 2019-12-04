@@ -44,4 +44,12 @@ public class DeliveryInfoDto {
 		this.toAddress = toAddress;
 	}
 
+	@Override
+	public String toString() {
+		return "DeliveryInfoDto [orderId=" + orderId + ", deliveryEstimatedDate=" + deliveryEstimatedDate
+				+ ", fromAddress=" + fromAddress + ", toAddress=" + toAddress + "]";
+	}
+	
+	
+
 }
